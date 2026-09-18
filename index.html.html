@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Htowntimes — Coming Soon</title>
+<meta name="description" content="Free local news for the suburbs of Houston. No paywall. No bias. Launching soon in Katy, Cypress, Pearland, Tomball, and Clear Lake/League City.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --color-bg: #f6f3ec;
+    --color-text: #1c1a17;
+    --color-muted: #6b6459;
+    --color-rule: #1c1a17;
+    --color-accent: #a4321f;
+    --color-divider: #d8d2c4;
+    --font-heading: 'Source Serif 4', Georgia, 'Times New Roman', serif;
+    --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  }
+  :root:not([data-theme="light"]) {
+    @media (prefers-color-scheme: dark) {
+      --color-bg: #171511;
+      --color-text: #ede8dd;
+      --color-muted: #a39a89;
+      --color-rule: #ede8dd;
+      --color-accent: #d97a5f;
+      --color-divider: #3a352c;
+    }
+  }
+  :root[data-theme="dark"] {
+    --color-bg: #171511;
+    --color-text: #ede8dd;
+    --color-muted: #a39a89;
+    --color-rule: #ede8dd;
+    --color-accent: #d97a5f;
+    --color-divider: #3a352c;
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    background: var(--color-bg);
+    color: var(--color-text);
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+    min-height: 100vh;
+  }
+
+  .wrap {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 48px 24px 80px;
+  }
+
+  header.masthead {
+    margin-bottom: 64px;
+  }
+  .rule-thick { height: 5px; background: var(--color-rule); }
+  .rule-thin { height: 1px; background: var(--color-rule); margin-top: 8px; }
+  .meta-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 16px;
+    padding: 10px 0;
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    color: var(--color-muted);
+    flex-wrap: wrap;
+  }
+  .wordmark {
+    font-family: var(--font-heading);
+    font-weight: 600;
+    font-size: clamp(40px, 9vw, 64px);
+    letter-spacing: -0.01em;
+    text-align: center;
+    margin: 18px 0 6px;
+  }
+  .tagline-eyebrow {
+    text-align: center;
+    font-size: 13px;
+    letter-spacing: 0.14em;
+    color: var(--color-muted);
+    margin-bottom: 8px;
+  }
+
+  main h1 {
+    font-family: var(--font-heading);
+    font-weight: 500;
+    font-size: clamp(28px, 5vw, 42px);
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    margin: 0 0 24px;
+    max-width: 20ch;
+  }
+
+  .lede {
+    font-size: 19px;
+    line-height: 1.6;
+    max-width: 56ch;
+    margin: 0 0 40px;
+    color: var(--color-text);
+  }
+
+  .markets {
+    border-top: 1px solid var(--color-divider);
+    border-bottom: 1px solid var(--color-divider);
+    padding: 22px 0;
+    margin-bottom: 44px;
+  }
+  .markets-label {
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    color: var(--color-muted);
+    margin-bottom: 10px;
+  }
+  .market-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 0;
+    font-family: var(--font-heading);
+    font-size: 18px;
+  }
+  .market-list span:not(:last-child)::after {
+    content: "·";
+    margin: 0 12px;
+    color: var(--color-muted);
+    font-family: var(--font-body);
+  }
+
+  .signup {
+    margin-bottom: 8px;
+  }
+  .signup p {
+    font-size: 15px;
+    color: var(--color-muted);
+    margin: 0 0 14px;
+    max-width: 48ch;
+  }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--color-text);
+    color: var(--color-bg);
+    text-decoration: none;
+    font-family: var(--font-body);
+    font-weight: 500;
+    font-size: 15px;
+    padding: 14px 22px;
+    border-radius: 2px;
+    transition: opacity 0.15s ease;
+  }
+  .btn:hover { opacity: 0.85; }
+  .btn svg { flex: none; }
+
+  footer {
+    margin-top: 72px;
+    padding-top: 24px;
+    border-top: 1px solid var(--color-divider);
+    font-size: 13px;
+    color: var(--color-muted);
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px 16px;
+  }
+
+  @media (max-width: 480px) {
+    .wrap { padding: 32px 20px 56px; }
+    .meta-row { font-size: 11px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="masthead">
+    <div class="rule-thick"></div>
+    <div class="meta-row">
+      <span>Vol. 1 · No. 1</span>
+      <span>Houston, Texas</span>
+      <span>Publication forthcoming</span>
+    </div>
+    <div class="rule-thin"></div>
+    <div class="tagline-eyebrow">A local newspaper, reborn as a media company</div>
+    <div class="wordmark">Htowntimes</div>
+  </header>
+
+  <main>
+    <h1>Every Houston suburb deserves its own front page.</h1>
+
+    <p class="lede">
+      Htowntimes is free local news for the suburbs of Houston &mdash; no paywall, no bias, no agenda.
+      We're building it now, one neighborhood at a time, with real reporters covering the businesses,
+      schools, and stories that make up your community. Knowing what's happening where you live
+      shouldn't cost anything.
+    </p>
+
+    <div class="markets">
+      <div class="markets-label">LAUNCHING IN</div>
+      <div class="market-list">
+        <span>Katy</span>
+        <span>Cypress</span>
+        <span>Pearland</span>
+        <span>Tomball</span>
+        <span>Clear Lake / League City</span>
+      </div>
+    </div>
+
+    <div class="signup">
+      <p>Want to know the moment we publish our first issue?</p>
+      <a class="btn" href="mailto:hello@htowntimes.com?subject=Notify%20me%20at%20launch">
+        <svg width="16" height="16" viewBox="0 0 256 256" fill="none" aria-hidden="true">
+          <path d="M224 56H32a8 8 0 0 0-8 8v128a16 16 0 0 0 16 16h176a16 16 0 0 0 16-16V64a8 8 0 0 0-8-8Zm-8 24.7V184H40V80.7l88 61.6a8 8 0 0 0 9.2 0Z" fill="currentColor"/>
+        </svg>
+        Get notified at launch
+      </a>
+    </div>
+  </main>
+
+  <footer>
+    <span>&copy; 2026 Htowntimes</span>
+    <span>htowntimes.com</span>
+  </footer>
+
+</div>
+</body>
+</html>
