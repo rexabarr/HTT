@@ -234,38 +234,26 @@
   /* Reporter recruiting */
   .reporters {
     margin-top: 56px;
+    padding: 28px 0 32px;
     border-top: 1px solid var(--color-divider);
     border-bottom: 1px solid var(--color-divider);
   }
-  .reporters summary {
-    list-style: none;
-    cursor: pointer;
-    padding: 22px 0;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 16px;
-  }
-  .reporters summary::-webkit-details-marker { display: none; }
-  .summary-text, .summary-text .markets-label { display: block; }
-  .summary-text .markets-label { margin-bottom: 0; }
-  .reporters summary:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 4px; }
+  .reporters .markets-label { margin-bottom: 0; }
   .reporters h2 {
     font-family: var(--font-heading);
     font-weight: 500;
     font-size: clamp(22px, 4vw, 28px);
     line-height: 1.25;
-    margin: 4px 0 0;
+    margin: 4px 0 14px;
   }
-  .summary-toggle {
-    flex: none;
-    font-size: 28px;
-    line-height: 1;
-    color: var(--color-muted);
-    transition: transform 0.15s ease;
+  .btn-outline {
+    background: transparent;
+    color: var(--color-text);
+    box-shadow: inset 0 0 0 1px var(--color-text);
   }
-  .reporters details[open] .summary-toggle { transform: rotate(45deg); }
-  .reporters-body { padding: 0 0 32px; }
+  .btn-toggle-icon { display: inline-block; font-size: 18px; line-height: 1; transition: transform 0.15s ease; }
+  .btn[aria-expanded="true"] .btn-toggle-icon { transform: rotate(45deg); }
+  .reporters-panel { margin-top: 28px; }
   .reporters-intro { font-size: 16px; line-height: 1.6; margin: 0 0 24px; max-width: 56ch; }
 
   @media (prefers-reduced-motion: reduce) {
@@ -365,72 +353,69 @@
     </div>
 
     <section class="reporters" aria-labelledby="rep-heading">
-      <details>
-        <summary>
-          <span class="summary-text">
-            <span class="markets-label">NOW RECRUITING</span>
-            <h2 id="rep-heading">Want to report on your own suburb?</h2>
-          </span>
-          <span class="summary-toggle" aria-hidden="true">+</span>
-        </summary>
-        <div class="reporters-body">
-          <p class="reporters-intro">
-            We're looking for people who live in our five communities to film short video stories about
-            the businesses, schools, and people around them. Reporters are paid per story and work on
-            their own schedule. Tell us a little about yourself.
-          </p>
-          <form class="form" id="reporter-form" aria-labelledby="rep-heading" novalidate>
-            <div class="hp" aria-hidden="true">
-              <label>Leave this empty <input type="text" name="company_website" tabindex="-1" autocomplete="off"></label>
-            </div>
-            <div class="field-row">
-              <div class="field">
-                <label for="rp-name">Name</label>
-                <input class="input" id="rp-name" name="name" type="text" autocomplete="name" maxlength="120" required>
-              </div>
-              <div class="field">
-                <label for="rp-phone">Phone</label>
-                <input class="input" id="rp-phone" name="phone" type="tel" autocomplete="tel" maxlength="25" required>
-              </div>
+      <div class="markets-label">NOW RECRUITING</div>
+      <h2 id="rep-heading">Want to report on your own suburb?</h2>
+      <p class="reporters-intro">
+        We're looking for people who live in our five communities to film short video stories about
+        the businesses, schools, and people around them. Reporters are paid per story and work on
+        their own schedule.
+      </p>
+      <button class="btn btn-outline" type="button" id="rep-toggle" aria-expanded="false" aria-controls="rep-panel">
+        <span class="btn-toggle-icon" aria-hidden="true">+</span>
+        <span class="btn-label">Apply to be a reporter</span>
+      </button>
+      <div class="reporters-panel" id="rep-panel" hidden>
+        <form class="form" id="reporter-form" aria-labelledby="rep-heading" novalidate>
+          <div class="hp" aria-hidden="true">
+            <label>Leave this empty <input type="text" name="company_website" tabindex="-1" autocomplete="off"></label>
+          </div>
+          <div class="field-row">
+            <div class="field">
+              <label for="rp-name">Name</label>
+              <input class="input" id="rp-name" name="name" type="text" autocomplete="name" maxlength="120" required>
             </div>
             <div class="field">
-              <label for="rp-email">Email</label>
-              <input class="input" id="rp-email" name="email" type="email" autocomplete="email" maxlength="254" required>
+              <label for="rp-phone">Phone</label>
+              <input class="input" id="rp-phone" name="phone" type="tel" autocomplete="tel" maxlength="25" required>
             </div>
-            <fieldset class="field">
-              <legend>Which editions could you cover? <span class="optional">Pick all that apply.</span></legend>
-              <div class="choices" data-group="editions">
-                <label class="choice"><input type="checkbox" name="editions" value="katy"><span>Katy</span></label>
-                <label class="choice"><input type="checkbox" name="editions" value="cypress"><span>Cypress</span></label>
-                <label class="choice"><input type="checkbox" name="editions" value="pearland"><span>Pearland</span></label>
-                <label class="choice"><input type="checkbox" name="editions" value="tomball"><span>Tomball</span></label>
-                <label class="choice"><input type="checkbox" name="editions" value="clear-lake-league-city"><span>Clear Lake / League City</span></label>
-              </div>
-            </fieldset>
-            <div class="field">
-              <label for="rp-social">Social handles <span class="optional">(optional)</span></label>
-              <input class="input" id="rp-social" name="social_handles" type="text" maxlength="500" placeholder="Instagram, TikTok, YouTube, Facebook">
+          </div>
+          <div class="field">
+            <label for="rp-email">Email</label>
+            <input class="input" id="rp-email" name="email" type="email" autocomplete="email" maxlength="254" required>
+          </div>
+          <fieldset class="field">
+            <legend>Which editions could you cover? <span class="optional">Pick all that apply.</span></legend>
+            <div class="choices" data-group="editions">
+              <label class="choice"><input type="checkbox" name="editions" value="katy"><span>Katy</span></label>
+              <label class="choice"><input type="checkbox" name="editions" value="cypress"><span>Cypress</span></label>
+              <label class="choice"><input type="checkbox" name="editions" value="pearland"><span>Pearland</span></label>
+              <label class="choice"><input type="checkbox" name="editions" value="tomball"><span>Tomball</span></label>
+              <label class="choice"><input type="checkbox" name="editions" value="clear-lake-league-city"><span>Clear Lake / League City</span></label>
             </div>
-            <div class="field">
-              <label for="rp-why">Why you?</label>
-              <p class="hint" id="rp-why-hint">A few sentences on why you'd be good at this and what you'd want to cover.</p>
-              <textarea class="input" id="rp-why" name="why_you" rows="5" maxlength="1500" aria-describedby="rp-why-hint" required></textarea>
-            </div>
-            <div class="field">
-              <label for="rp-link">Link to past video work <span class="optional">(optional)</span></label>
-              <input class="input" id="rp-link" name="portfolio_url" type="url" inputmode="url" maxlength="500" placeholder="https://">
-            </div>
-            <label class="check-line">
-              <input type="checkbox" name="age_confirmed" id="rp-age" required>
-              <span>I'm 18 or older.</span>
-            </label>
-            <button class="btn" type="submit">Send my application</button>
-            <p class="form-status" role="status" aria-live="polite"></p>
-          </form>
-          <!-- PLACEHOLDER privacy text: replace with attorney-approved wording and link to the Privacy Policy. -->
-          <p class="privacy-note">We'll only use this to review your application and contact you about reporting. We never sell your information.</p>
-        </div>
-      </details>
+          </fieldset>
+          <div class="field">
+            <label for="rp-social">Social handles <span class="optional">(optional)</span></label>
+            <input class="input" id="rp-social" name="social_handles" type="text" maxlength="500" placeholder="Instagram, TikTok, YouTube, Facebook">
+          </div>
+          <div class="field">
+            <label for="rp-why">Why you?</label>
+            <p class="hint" id="rp-why-hint">A few sentences on why you'd be good at this and what you'd want to cover.</p>
+            <textarea class="input" id="rp-why" name="why_you" rows="5" maxlength="1500" aria-describedby="rp-why-hint" required></textarea>
+          </div>
+          <div class="field">
+            <label for="rp-link">Link to past video work <span class="optional">(optional)</span></label>
+            <input class="input" id="rp-link" name="portfolio_url" type="url" inputmode="url" maxlength="500" placeholder="https://">
+          </div>
+          <label class="check-line">
+            <input type="checkbox" name="age_confirmed" id="rp-age" required>
+            <span>I'm 18 or older.</span>
+          </label>
+          <button class="btn" type="submit">Send my application</button>
+          <p class="form-status" role="status" aria-live="polite"></p>
+        </form>
+        <!-- PLACEHOLDER privacy text: replace with attorney-approved wording and link to the Privacy Policy. -->
+        <p class="privacy-note">We'll only use this to review your application and contact you about reporting. We never sell your information.</p>
+      </div>
     </section>
   </main>
 
@@ -519,6 +504,20 @@
     if (!EMAIL_RE.test(data.email)) errors.push({ el: form.elements.email, msg: 'Please enter a valid email.' });
     if (!data.editions.length) errors.push({ el: form.querySelector('[data-group="editions"]'), msg: 'Please pick at least one edition.' });
   }
+
+  // "Apply to be a reporter" reveals the application form.
+  var repToggle = document.getElementById('rep-toggle');
+  var repPanel = document.getElementById('rep-panel');
+  repToggle.addEventListener('click', function () {
+    var open = repToggle.getAttribute('aria-expanded') !== 'true';
+    repToggle.setAttribute('aria-expanded', String(open));
+    repToggle.querySelector('.btn-label').textContent = open ? 'Close application' : 'Apply to be a reporter';
+    repPanel.hidden = !open;
+    if (open) {
+      var first = document.getElementById('rp-name');
+      if (first) first.focus();
+    }
+  });
 
   wire(document.getElementById('signup-form'), 'subscribers', function (form) {
     var data = {}, errors = [];
