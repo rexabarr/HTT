@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Htowntimes — Coming Soon</title>
+<title>Htowntimes | Coming Soon</title>
 <meta name="description" content="Free local news for the suburbs of Houston. No paywall. No bias. Launching soon in Katy, Cypress, Pearland, Tomball, and Clear Lake/League City.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -133,7 +133,7 @@
   .signup {
     margin-bottom: 8px;
   }
-  .signup p {
+  .signup-prompt {
     font-size: 15px;
     color: var(--color-muted);
     margin: 0 0 14px;
@@ -155,6 +155,122 @@
   }
   .btn:hover { opacity: 0.85; }
   .btn svg { flex: none; }
+  button.btn { border: 0; cursor: pointer; justify-self: start; }
+  button.btn:disabled { opacity: 0.6; cursor: progress; }
+  .btn:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 3px; }
+
+  /* Forms */
+  .form { display: grid; gap: 20px; max-width: 560px; }
+  .field-row { display: grid; gap: 20px; }
+  @media (min-width: 600px) {
+    .field-row { grid-template-columns: 1fr 1fr; }
+  }
+  .field { display: grid; gap: 6px; margin: 0; padding: 0; border: 0; min-width: 0; }
+  .field > label, .field > legend {
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    padding: 0;
+    margin-bottom: 6px;
+  }
+  .field .optional { color: var(--color-muted); font-weight: 400; }
+  .hint { font-size: 13px; color: var(--color-muted); margin: 0; }
+  .input {
+    width: 100%;
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.4;
+    padding: 12px 14px;
+    background: transparent;
+    color: var(--color-text);
+    border: 1px solid var(--color-muted);
+    border-radius: 2px;
+  }
+  textarea.input { resize: vertical; min-height: 120px; }
+  .input:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 1px; }
+  .input[aria-invalid="true"], .choices[aria-invalid="true"] .choice span { border-color: var(--color-accent); }
+
+  .choices { display: flex; flex-wrap: wrap; gap: 8px; }
+  .choice { position: relative; }
+  .choice input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+  .choice span {
+    display: inline-block;
+    padding: 8px 14px;
+    border: 1px solid var(--color-muted);
+    border-radius: 2px;
+    font-family: var(--font-heading);
+    font-size: 16px;
+    cursor: pointer;
+    user-select: none;
+  }
+  .choice input:checked + span {
+    background: var(--color-text);
+    color: var(--color-bg);
+    border-color: var(--color-text);
+  }
+  .choice input:checked + span::before { content: "\2713\00a0"; }
+  .choice input:focus-visible + span { outline: 2px solid var(--color-accent); outline-offset: 2px; }
+
+  .check-line { display: flex; gap: 10px; align-items: flex-start; font-size: 15px; line-height: 1.5; }
+  .check-line input { width: 18px; height: 18px; margin-top: 2px; flex: none; accent-color: var(--color-accent); }
+
+  .hp { position: absolute; left: -10000px; top: auto; width: 1px; height: 1px; overflow: hidden; }
+
+  .form-status { font-size: 14px; margin: 0; min-height: 1.4em; }
+  .form-status.is-error { color: var(--color-accent); }
+  .privacy-note { font-size: 13px; color: var(--color-muted); margin: 14px 0 0; max-width: 56ch; line-height: 1.5; }
+  .thanks {
+    font-family: var(--font-heading);
+    font-size: 21px;
+    line-height: 1.4;
+    margin: 0;
+    padding: 16px 0;
+    border-top: 1px solid var(--color-divider);
+    border-bottom: 1px solid var(--color-divider);
+    max-width: 560px;
+  }
+  .thanks:focus { outline: none; }
+
+  /* Reporter recruiting */
+  .reporters {
+    margin-top: 56px;
+    border-top: 1px solid var(--color-divider);
+    border-bottom: 1px solid var(--color-divider);
+  }
+  .reporters summary {
+    list-style: none;
+    cursor: pointer;
+    padding: 22px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+  }
+  .reporters summary::-webkit-details-marker { display: none; }
+  .summary-text, .summary-text .markets-label { display: block; }
+  .summary-text .markets-label { margin-bottom: 0; }
+  .reporters summary:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 4px; }
+  .reporters h2 {
+    font-family: var(--font-heading);
+    font-weight: 500;
+    font-size: clamp(22px, 4vw, 28px);
+    line-height: 1.25;
+    margin: 4px 0 0;
+  }
+  .summary-toggle {
+    flex: none;
+    font-size: 28px;
+    line-height: 1;
+    color: var(--color-muted);
+    transition: transform 0.15s ease;
+  }
+  .reporters details[open] .summary-toggle { transform: rotate(45deg); }
+  .reporters-body { padding: 0 0 32px; }
+  .reporters-intro { font-size: 16px; line-height: 1.6; margin: 0 0 24px; max-width: 56ch; }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { transition: none !important; }
+  }
 
   footer {
     margin-top: 72px;
@@ -193,7 +309,7 @@
     <h1>Every Houston suburb deserves its own front page.</h1>
 
     <p class="lede">
-      Htowntimes is free local news for the suburbs of Houston &mdash; no paywall, no bias, no agenda.
+      Htowntimes is free local news for the suburbs of Houston. No paywall, no bias, no agenda.
       We're building it now, one neighborhood at a time, with real reporters covering the businesses,
       schools, and stories that make up your community. Knowing what's happening where you live
       shouldn't cost anything.
@@ -211,14 +327,111 @@
     </div>
 
     <div class="signup">
-      <p>Want to know the moment we publish our first issue?</p>
-      <a class="btn" href="mailto:hello@htowntimes.com?subject=Notify%20me%20at%20launch">
-        <svg width="16" height="16" viewBox="0 0 256 256" fill="none" aria-hidden="true">
-          <path d="M224 56H32a8 8 0 0 0-8 8v128a16 16 0 0 0 16 16h176a16 16 0 0 0 16-16V64a8 8 0 0 0-8-8Zm-8 24.7V184H40V80.7l88 61.6a8 8 0 0 0 9.2 0Z" fill="currentColor"/>
-        </svg>
-        Get notified at launch
-      </a>
+      <p class="signup-prompt" id="signup-prompt">Want to know the moment we publish our first issue?</p>
+      <form class="form" id="signup-form" aria-labelledby="signup-prompt" novalidate>
+        <div class="hp" aria-hidden="true">
+          <label>Leave this empty <input type="text" name="company_website" tabindex="-1" autocomplete="off"></label>
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label for="su-name">Name</label>
+            <input class="input" id="su-name" name="name" type="text" autocomplete="name" maxlength="120" required>
+          </div>
+          <div class="field">
+            <label for="su-email">Email</label>
+            <input class="input" id="su-email" name="email" type="email" autocomplete="email" maxlength="254" required>
+          </div>
+        </div>
+        <fieldset class="field">
+          <legend>Which editions do you want? <span class="optional">Pick as many as you like.</span></legend>
+          <div class="choices" data-group="editions">
+            <label class="choice"><input type="checkbox" name="editions" value="katy"><span>Katy</span></label>
+            <label class="choice"><input type="checkbox" name="editions" value="cypress"><span>Cypress</span></label>
+            <label class="choice"><input type="checkbox" name="editions" value="pearland"><span>Pearland</span></label>
+            <label class="choice"><input type="checkbox" name="editions" value="tomball"><span>Tomball</span></label>
+            <label class="choice"><input type="checkbox" name="editions" value="clear-lake-league-city"><span>Clear Lake / League City</span></label>
+          </div>
+        </fieldset>
+        <button class="btn" type="submit">
+          <svg width="16" height="16" viewBox="0 0 256 256" fill="none" aria-hidden="true">
+            <path d="M224 56H32a8 8 0 0 0-8 8v128a16 16 0 0 0 16 16h176a16 16 0 0 0 16-16V64a8 8 0 0 0-8-8Zm-8 24.7V184H40V80.7l88 61.6a8 8 0 0 0 9.2 0Z" fill="currentColor"/>
+          </svg>
+          Get notified at launch
+        </button>
+        <p class="form-status" role="status" aria-live="polite"></p>
+      </form>
+      <!-- PLACEHOLDER privacy text: replace with attorney-approved wording and link to the Privacy Policy. -->
+      <p class="privacy-note">We'll only use this to tell you about Htowntimes. We never sell your information.</p>
     </div>
+
+    <section class="reporters" aria-labelledby="rep-heading">
+      <details>
+        <summary>
+          <span class="summary-text">
+            <span class="markets-label">NOW RECRUITING</span>
+            <h2 id="rep-heading">Want to report on your own suburb?</h2>
+          </span>
+          <span class="summary-toggle" aria-hidden="true">+</span>
+        </summary>
+        <div class="reporters-body">
+          <p class="reporters-intro">
+            We're looking for people who live in our five communities to film short video stories about
+            the businesses, schools, and people around them. Reporters are paid per story and work on
+            their own schedule. Tell us a little about yourself.
+          </p>
+          <form class="form" id="reporter-form" aria-labelledby="rep-heading" novalidate>
+            <div class="hp" aria-hidden="true">
+              <label>Leave this empty <input type="text" name="company_website" tabindex="-1" autocomplete="off"></label>
+            </div>
+            <div class="field-row">
+              <div class="field">
+                <label for="rp-name">Name</label>
+                <input class="input" id="rp-name" name="name" type="text" autocomplete="name" maxlength="120" required>
+              </div>
+              <div class="field">
+                <label for="rp-phone">Phone</label>
+                <input class="input" id="rp-phone" name="phone" type="tel" autocomplete="tel" maxlength="25" required>
+              </div>
+            </div>
+            <div class="field">
+              <label for="rp-email">Email</label>
+              <input class="input" id="rp-email" name="email" type="email" autocomplete="email" maxlength="254" required>
+            </div>
+            <fieldset class="field">
+              <legend>Which editions could you cover? <span class="optional">Pick all that apply.</span></legend>
+              <div class="choices" data-group="editions">
+                <label class="choice"><input type="checkbox" name="editions" value="katy"><span>Katy</span></label>
+                <label class="choice"><input type="checkbox" name="editions" value="cypress"><span>Cypress</span></label>
+                <label class="choice"><input type="checkbox" name="editions" value="pearland"><span>Pearland</span></label>
+                <label class="choice"><input type="checkbox" name="editions" value="tomball"><span>Tomball</span></label>
+                <label class="choice"><input type="checkbox" name="editions" value="clear-lake-league-city"><span>Clear Lake / League City</span></label>
+              </div>
+            </fieldset>
+            <div class="field">
+              <label for="rp-social">Social handles <span class="optional">(optional)</span></label>
+              <input class="input" id="rp-social" name="social_handles" type="text" maxlength="500" placeholder="Instagram, TikTok, YouTube, Facebook">
+            </div>
+            <div class="field">
+              <label for="rp-why">Why you?</label>
+              <p class="hint" id="rp-why-hint">A few sentences on why you'd be good at this and what you'd want to cover.</p>
+              <textarea class="input" id="rp-why" name="why_you" rows="5" maxlength="1500" aria-describedby="rp-why-hint" required></textarea>
+            </div>
+            <div class="field">
+              <label for="rp-link">Link to past video work <span class="optional">(optional)</span></label>
+              <input class="input" id="rp-link" name="portfolio_url" type="url" inputmode="url" maxlength="500" placeholder="https://">
+            </div>
+            <label class="check-line">
+              <input type="checkbox" name="age_confirmed" id="rp-age" required>
+              <span>I'm 18 or older.</span>
+            </label>
+            <button class="btn" type="submit">Send my application</button>
+            <p class="form-status" role="status" aria-live="polite"></p>
+          </form>
+          <!-- PLACEHOLDER privacy text: replace with attorney-approved wording and link to the Privacy Policy. -->
+          <p class="privacy-note">We'll only use this to review your application and contact you about reporting. We never sell your information.</p>
+        </div>
+      </details>
+    </section>
   </main>
 
   <footer>
@@ -227,5 +440,111 @@
   </footer>
 
 </div>
+<script>
+(function () {
+  // Publishable key is safe to expose: the database only allows inserts on these two tables (no reads).
+  var SUPABASE_URL = 'https://zyygkgaciehejipexigh.supabase.co';
+  var SUPABASE_KEY = 'sb_publishable_FBf9ePys3eaW2TBhMH_eWg_SomMw29a';
+  var PRIVACY_NOTICE_VERSION = '2026-09-21-placeholder';
+  var MIN_FILL_MS = 3000; // faster than this is almost certainly a bot
+  var loadedAt = Date.now();
+  var EMAIL_RE = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
+
+  function val(form, name) { return (form.elements[name] && form.elements[name].value || '').trim(); }
+  function checked(form, name) {
+    return Array.prototype.map.call(form.querySelectorAll('input[name="' + name + '"]:checked'), function (el) { return el.value; });
+  }
+
+  function wire(form, table, collect, thanksText) {
+    var status = form.querySelector('.form-status');
+    var button = form.querySelector('button[type="submit"]');
+
+    function showThanks() {
+      var p = document.createElement('p');
+      p.className = 'thanks';
+      p.setAttribute('tabindex', '-1');
+      p.textContent = thanksText;
+      form.replaceWith(p);
+      p.focus();
+    }
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      status.textContent = '';
+      status.classList.remove('is-error');
+      form.querySelectorAll('[aria-invalid]').forEach(function (el) { el.removeAttribute('aria-invalid'); });
+
+      // Spam checks: honeypot filled or submitted too fast. Pretend it worked and send nothing.
+      if (val(form, 'company_website') || Date.now() - loadedAt < MIN_FILL_MS) { showThanks(); return; }
+
+      var result = collect(form);
+      if (result.errors.length) {
+        result.errors.forEach(function (err) { err.el.setAttribute('aria-invalid', 'true'); });
+        status.textContent = result.errors.map(function (err) { return err.msg; }).join(' ');
+        status.classList.add('is-error');
+        var first = result.errors[0].el;
+        (first.matches('input, textarea') ? first : first.querySelector('input')).focus();
+        return;
+      }
+
+      result.data.privacy_notice_version = PRIVACY_NOTICE_VERSION;
+      button.disabled = true;
+      status.textContent = 'Sending…';
+
+      fetch(SUPABASE_URL + '/rest/v1/' + table, {
+        method: 'POST',
+        headers: {
+          'apikey': SUPABASE_KEY,
+          'Content-Type': 'application/json',
+          'Prefer': 'return=minimal'
+        },
+        body: JSON.stringify(result.data)
+      }).then(function (res) {
+        // 409 = email already on the list. Treat as success so we never reveal who has signed up.
+        if (res.ok || res.status === 409) { showThanks(); return; }
+        throw new Error('HTTP ' + res.status);
+      }).catch(function () {
+        button.disabled = false;
+        status.textContent = 'Something went wrong on our end. Please try again in a moment.';
+        status.classList.add('is-error');
+      });
+    });
+  }
+
+  function requireBasics(form, data, errors) {
+    data.name = val(form, 'name');
+    data.email = val(form, 'email');
+    data.editions = checked(form, 'editions');
+    if (!data.name) errors.push({ el: form.elements.name, msg: 'Please enter your name.' });
+    if (!EMAIL_RE.test(data.email)) errors.push({ el: form.elements.email, msg: 'Please enter a valid email.' });
+    if (!data.editions.length) errors.push({ el: form.querySelector('[data-group="editions"]'), msg: 'Please pick at least one edition.' });
+  }
+
+  wire(document.getElementById('signup-form'), 'subscribers', function (form) {
+    var data = {}, errors = [];
+    requireBasics(form, data, errors);
+    return { data: data, errors: errors };
+  }, "Thanks, you're on the list. We'll email you the day we launch.");
+
+  wire(document.getElementById('reporter-form'), 'reporter_applicants', function (form) {
+    var data = {}, errors = [];
+    requireBasics(form, data, errors);
+    data.phone = val(form, 'phone');
+    data.why_you = val(form, 'why_you');
+    data.social_handles = val(form, 'social_handles') || null;
+    data.portfolio_url = val(form, 'portfolio_url') || null;
+    data.age_confirmed = form.elements.age_confirmed.checked;
+    if (data.portfolio_url && !/^https?:\/\//i.test(data.portfolio_url)) data.portfolio_url = 'https://' + data.portfolio_url;
+
+    if (data.phone.replace(/\D/g, '').length < 10 || !/^[0-9+().\s-]+$/.test(data.phone)) errors.push({ el: form.elements.phone, msg: 'Please enter a phone number with area code.' });
+    if (data.why_you.length < 20) errors.push({ el: form.elements.why_you, msg: 'Please tell us a bit more about why you (a sentence or two).' });
+    if (!data.age_confirmed) errors.push({ el: form.elements.age_confirmed, msg: 'Please confirm you are 18 or older.' });
+    // Keep error order matching the visual field order.
+    var order = Array.prototype.slice.call(form.querySelectorAll('input, textarea, [data-group]'));
+    errors.sort(function (a, b) { return order.indexOf(a.el) - order.indexOf(b.el); });
+    return { data: data, errors: errors };
+  }, "Thanks for applying. We read every application and will be in touch.");
+})();
+</script>
 </body>
 </html>
